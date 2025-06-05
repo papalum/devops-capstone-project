@@ -17,6 +17,7 @@ assignees: ''
 - [Add more assumptions if needed]
 
 ### Acceptance Criteria
+
     **Given** [initial condition or setup]  
     **When** [event or action happens]  
     **Then** [expected result or outcome]
