@@ -22,10 +22,6 @@ spec:
             - containerPort: 8000
               name: http
           env:
-            - name: FLASK_APP
-              value: "service:app"
-            - name: FLASK_ENV
-              value: "production"
             - name: DATABASE_URI
               valueFrom:
                 secretKeyRef:
@@ -34,5 +30,4 @@ spec:
           resources:
             limits:
             memory: "512Mi"
-            cpu: "500m"
-
+            cpu: "500m"            

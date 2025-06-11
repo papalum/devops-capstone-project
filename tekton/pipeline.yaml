@@ -104,4 +104,5 @@ spec:
           oc apply -f deploy/deployment.yaml
           oc get pods -l app=accounts
       runAfter:
-        - build     
+        - build
+        
