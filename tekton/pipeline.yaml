@@ -85,4 +85,24 @@ spec:
           value: .devcontainer/Dockerfile    
       runAfter:
         - tests
-        - lint      
+        - lint     
+
+    - name: deploy
+      workspaces:
+        - name: manifest-dir
+          workspace: pipeline-workspace
+      taskRef:
+        name: openshift-client
+        kind: ClusterTask
+      params:
+      - name: SCRIPT
+        value: |
+          echo "Updating manifest..."
+          sed -i "s|accounts:latest|$(params.build-image)|g" deploy/deployment.yaml
+          cat deploy/deployment.yaml
+          echo "Deploying to OpenShift..."
+          oc apply -f deploy/deployment.yaml
+          oc get pods -l app=accounts
+      runAfter:
+        - build
+        
